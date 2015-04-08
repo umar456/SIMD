@@ -9,7 +9,6 @@ ptrdiff_t get_aligned_offset(const void* addr)
     static const int alignment = sizeof(SIMDIntrinsic);
     static const ptrdiff_t mask = alignment-1;
     const ptrdiff_t addr_val = reinterpret_cast<ptrdiff_t>(addr);
-    printf("val: %lu\n", addr_val & mask);
     if ((addr_val & mask) == 0)
         return 0;
     return alignment - (addr_val & mask);
@@ -67,7 +66,6 @@ public:
         , simd_elements(floor(float(elements - align_offset) / simd_size))
         , tail_elements(elements - end_offset())
     {
-        printf("%p, %u\n", raw_ptr, align_offset);
     }
 
     /// \brief The number of elements before the aligned element
